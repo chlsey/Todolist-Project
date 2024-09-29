@@ -1,6 +1,6 @@
-package view;
+package org.todo.view;
 
-import model.Task;
+import org.todo.model.Task;
 
 import java.util.List;
 import java.util.Scanner;

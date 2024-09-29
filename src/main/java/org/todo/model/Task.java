@@ -1,4 +1,4 @@
-package model;
+package org.todo.model;
 
 public class Task {
     private String taskName;

@@ -1,6 +1,8 @@
-import controller.TodoController;
-import model.TodoList;
-import view.TodoView;
+package org.todo;
+
+import org.todo.controller.TodoController;
+import org.todo.model.TodoList;
+import org.todo.view.TodoView;
 
 public class Main {
     public static void main(String[] args) {

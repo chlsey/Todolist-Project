@@ -1,8 +1,8 @@
-package controller;
+package org.todo.controller;
 
-import model.Task;
-import model.TodoList;
-import view.TodoView;
+import org.todo.view.TodoView;
+import org.todo.model.Task;
+import org.todo.model.TodoList;
 
 public class TodoController {
     private TodoList todolist;
@@ -31,7 +31,7 @@ public class TodoController {
                     todolist.completeTask(0);
                     break;
                 case "4":
-                    // view.displayTasks(todolist.getTasks());
+                    // org.todo.view.displayTasks(todolist.getTasks());
                     break;
                 case "5":
                     isRunning = false;
