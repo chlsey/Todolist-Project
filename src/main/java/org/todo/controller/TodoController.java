@@ -15,23 +15,32 @@ public class TodoController {
 
     public void run() {
         boolean isRunning = true;
+        view.showMenu();
 
         while (isRunning) {
-            view.showMenu();
             String choice = view.getInput("Choose an option: ");
 
             switch (choice) {
                 case "1":
-                    todolist.addTask(new Task("lol"));
+                    String name = view.getTaskName();
+                    int prior = view.getPriority();
+                    todolist.addTask(new Task(name, prior));
                     break;
                 case "2":
-                    todolist.removeTask(0);
+                    int ind = view.getTaskIndex();
+                    if (!todolist.removeTask(ind)) {
+                        view.printIndexError();
+                    }
                     break;
                 case "3":
-                    todolist.completeTask(0);
+                    int index = view.getTaskIndex();
+                    if (todolist.completeTask(index)) {
+                        view.printIndexError();
+                    }
                     break;
+
                 case "4":
-                    // org.todo.view.displayTasks(todolist.getTasks());
+                    view.displayTasks(todolist.getTasks());
                     break;
                 case "5":
                     isRunning = false;

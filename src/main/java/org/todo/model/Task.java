@@ -10,6 +10,12 @@ public class Task {
         this.completed = false;
         this.priority = 0;
     }
+
+    public Task(String taskName, int prior) {
+        this.taskName = taskName;
+        this.completed = false;
+        this.priority = prior;
+    }
     public String getTaskName() {
         return taskName;
     }
