@@ -25,16 +25,10 @@ public class TodoController {
                     addTask();
                     break;
                 case "2":
-                    int ind = view.getTaskIndex();
-                    if (!todolist.removeTask(ind)) {
-                        view.printIndexError();
-                    }
+                    removeTask();
                     break;
                 case "3":
-                    int index = view.getTaskIndex();
-                    if (todolist.completeTask(index)) {
-                        view.printIndexError();
-                    }
+                    completeTask();
                     break;
 
                 case "4":
@@ -59,17 +53,22 @@ public class TodoController {
 
     private void removeTask() {
         view.displayTasks(todolist.getTasks());
-        int index = view.getTaskIndex();
-        todolist.removeTask(index);
-        System.out.println("Task removed.");
+        int ind = view.getTaskIndex();
+        if (!todolist.removeTask(ind)) {
+            view.printIndexError();
+        } else {
+            System.out.println("Task removed.");
+        }
     }
 
     private void completeTask() {
         view.displayTasks(todolist.getTasks());
         int index = view.getTaskIndex();
-        todolist.completeTask(index);
-        System.out.println("Task marked as complete.");
+        if (todolist.completeTask(index)) {
+            view.printIndexError();
+        } else {
+            System.out.println("Task marked as complete.");
+        }
     }
-
 }
 
