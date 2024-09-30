@@ -16,6 +16,7 @@ public class TodoList {
             for (int i = 0; i < tasks.size(); i++) {
                 if (tasky.getPriority() > tasks.get(i).getPriority()) {
                     tasks.add(i, tasky);
+                    break;
                 }
             }
         }

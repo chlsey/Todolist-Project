@@ -22,9 +22,7 @@ public class TodoController {
 
             switch (choice) {
                 case "1":
-                    String name = view.getTaskName();
-                    int prior = view.getPriority();
-                    todolist.addTask(new Task(name, prior));
+                    addTask();
                     break;
                 case "2":
                     int ind = view.getTaskIndex();
@@ -54,7 +52,8 @@ public class TodoController {
 
     private void addTask() {
         String description = view.getInput("Enter task description: ");
-        todolist.addTask(new Task(description));
+        int prior = view.getPriority();
+        todolist.addTask(new Task(description, prior));
         System.out.println("Task added.");
     }
 

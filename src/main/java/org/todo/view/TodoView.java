@@ -16,7 +16,7 @@ public class TodoView {
         } else {
             System.out.println("Your To-Do List:");
             for (int i = 0; i < tasks.size(); i++) {
-                System.out.println("\n" + (i + 1) + "." + tasks.get(i).getTaskName());
+                System.out.println((i + 1) + "." + tasks.get(i).getTaskName());
             }
         }
     }
