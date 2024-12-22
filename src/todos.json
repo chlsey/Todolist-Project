@@ -1,0 +1,27 @@
+{
+  "important" : [
+    {
+      "title": "important",
+      "priority": [
+        {
+          "title": "cook",
+          "due": "2024-12-25"
+        }, {
+          "title": "read",
+          "due": "2024-12-24"
+        }],
+      "normal": [
+        {
+          "title": "sew",
+          "due": "2024-12-20"
+        }
+      ]
+    } ],
+  "daily" : [
+    {
+      "title": "daily",
+      "priority": [],
+      "normal": []
+    }
+  ]
+}
