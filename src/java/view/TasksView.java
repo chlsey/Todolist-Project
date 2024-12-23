@@ -9,7 +9,6 @@ import java.beans.PropertyChangeListener;
 public class TasksView extends JPanel implements ActionListener, PropertyChangeListener {
     final private String viewName = "tasks view";
 
-
     @Override
     public void actionPerformed(ActionEvent e) {
 

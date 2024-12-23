@@ -12,4 +12,8 @@ public class DefaultListsState {
     public void addList(String list) {
         this.lists.add(list);
     }
+
+    public ArrayList<String> getLists() {
+        return this.lists;
+    }
 }

@@ -11,7 +11,7 @@ public class DefaultListsController {
         this.defaultListsInteractor = defaultListsInteractor;
     }
 
-    public void execute(String listTitle) {
+    public void execute() {
         DefaultListsInputData defaultListsInputData = new DefaultListsInputData();
         this.defaultListsInteractor.execute(defaultListsInputData);
     }

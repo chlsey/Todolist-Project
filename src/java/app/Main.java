@@ -34,7 +34,7 @@ public class Main {
 
         final FileToDoDataAccessObject fileToDoDataAccessObject = new FileToDoDataAccessObject("src/todos.json");
 
-        // Views
+        // views
         final DefaultListsView defaultListsView = new DefaultListsView(defaultListsViewModel,
                 UseCaseFactory.createCreateListUseCase(viewManagerModel, defaultListsViewModel, fileToDoDataAccessObject),
                 UseCaseFactory.createDefaultListsUseCase(viewManagerModel, defaultListsViewModel, fileToDoDataAccessObject));
@@ -44,6 +44,14 @@ public class Main {
         views.add(defaultListsView, defaultListsView.getViewName());
 
         views.add(tasksView, tasksView.getViewName());
+
+
+        // final steps
+        viewManagerModel.setState(defaultListsView.getViewName());
+        viewManagerModel.firePropertyChanged();
+
+        frame.pack();
+        frame.setVisible(true);
 
     }
 }
