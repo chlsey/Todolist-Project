@@ -10,6 +10,8 @@ public class ToDoList {
 
     public ToDoList(String title) {
         this.title = title;
+        priorityToDos = new ArrayList<>();
+        normalToDos = new ArrayList<>();
     }
 
     public ToDoList(String title, ArrayList<ToDo> todos) {

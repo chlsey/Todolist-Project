@@ -7,7 +7,7 @@ import use_case.create_list.CreateListInteractor;
 public class CreateListController {
     private final CreateListInputBoundary createListInteractor;
 
-    public CreateListController(CreateListInteractor createListInteractor) {
+    public CreateListController(CreateListInputBoundary createListInteractor) {
         this.createListInteractor = createListInteractor;
     }
 

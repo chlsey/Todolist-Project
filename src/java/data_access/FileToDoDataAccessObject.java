@@ -9,6 +9,7 @@ import entity.ToDo;
 import entity.ToDoList;
 import use_case.add_task.AddTaskToDoDataAccessInterface;
 import use_case.create_list.CreateListToDoDataAccessInterface;
+import use_case.default_lists.DefaultListsToDoDataAccessObjectInterface;
 import use_case.prioritize_task.PrioritizeTaskToDoDataAccessInterface;
 import use_case.select_list.SelectListToDoDataAccessInterface;
 
@@ -19,7 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class FileToDoDataAccessObject implements CreateListToDoDataAccessInterface, AddTaskToDoDataAccessInterface,
-        PrioritizeTaskToDoDataAccessInterface, SelectListToDoDataAccessInterface {
+        PrioritizeTaskToDoDataAccessInterface, SelectListToDoDataAccessInterface, DefaultListsToDoDataAccessObjectInterface {
     private final File jsonFile;
     private final ArrayList<ToDoList> lists = new ArrayList<>();
 
@@ -98,5 +99,23 @@ public class FileToDoDataAccessObject implements CreateListToDoDataAccessInterfa
         }
         return false;
 
+    }
+
+    @Override
+    public ArrayList<String> getAllLists() {
+        ArrayList<String> lists = new ArrayList<>();
+        if (jsonFile.length() != 0) {
+            try {
+                final ObjectMapper objectMapper = new ObjectMapper();
+                final JsonNode rootNode = objectMapper.readTree(jsonFile);
+                for (JsonNode jsonObject : rootNode) {
+                    lists.add(jsonObject.get("title").asText());
+                }
+            }
+            catch (IOException event) {
+                event.printStackTrace();
+            }
+        }
+        return lists;
     }
 }

@@ -1,4 +1,5 @@
 package use_case.default_lists;
 
-public class DefaultListsOutputBoundary {
+public interface DefaultListsOutputBoundary {
+    void prepareSuccessView(DefaultListsOutputData defaultListsOutputData);
 }

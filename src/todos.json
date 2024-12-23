@@ -1,5 +1,5 @@
 {
-  "important" : [
+  "important" :
     {
       "title": "important",
       "priority": [
@@ -16,12 +16,11 @@
           "due": "2024-12-20"
         }
       ]
-    } ],
-  "daily" : [
+    },
+  "daily" :
     {
       "title": "daily",
       "priority": [],
       "normal": []
     }
-  ]
 }
