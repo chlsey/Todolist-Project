@@ -19,12 +19,14 @@ public class CreateListPresenter implements CreateListOutputBoundary {
     @Override
     public void prepareSuccessView(CreateListOutputData createListOutputData) {
         final DefaultListsState defaultListsState = defaultListsViewModel.getState();
-
-
+        defaultListsState.addList(createListOutputData.getTitle());
+        defaultListsViewModel.setState(defaultListsState);
+        defaultListsViewModel.firePropertyChanged("new list");
     }
 
     @Override
     public void prepareFailureView(String errorMessage) {
+
 
     }
 }

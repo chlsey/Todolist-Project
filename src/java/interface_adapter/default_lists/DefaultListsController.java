@@ -15,4 +15,8 @@ public class DefaultListsController {
         DefaultListsInputData defaultListsInputData = new DefaultListsInputData();
         this.defaultListsInteractor.execute(defaultListsInputData);
     }
+
+    public void switchToTasksView(String list) {
+        this.defaultListsInteractor.switchToTasksView(list);
+    }
 }

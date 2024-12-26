@@ -82,13 +82,14 @@ public class FileToDoDataAccessObject implements CreateListToDoDataAccessInterfa
             try {
                 final ObjectMapper objectMapper = new ObjectMapper();
                 final JsonNode rootNode = objectMapper.readTree(jsonFile);
-                final ObjectNode newList = objectMapper.createObjectNode();
+
+                ObjectNode newList = objectMapper.createObjectNode();
                 newList.put("title", listTitle);
-                final ArrayNode priorityList = objectMapper.createArrayNode();
-                final ArrayNode normalList = objectMapper.createArrayNode();
-                newList.set("priority", priorityList);
-                newList.set("priority", normalList);
-                ((ArrayNode) rootNode).add(newList);
+                newList.putArray("priority");
+                newList.putArray("normal");
+
+                ((ObjectNode) rootNode).set(listTitle, newList);
+
                 objectMapper.writerWithDefaultPrettyPrinter().writeValue(jsonFile, rootNode);
             }
             catch (IOException event) {
@@ -117,5 +118,29 @@ public class FileToDoDataAccessObject implements CreateListToDoDataAccessInterfa
             }
         }
         return lists;
+    }
+
+    @Override
+    public ArrayList<ToDo> getToDos(String list) {
+        ArrayList<ToDo> todos = new ArrayList<>();
+        if (jsonFile.length() != 0) {
+            try {
+                final ObjectMapper objectMapper = new ObjectMapper();
+                final JsonNode rootNode = objectMapper.readTree(jsonFile);
+                final JsonNode priorityNode = rootNode.get(list).get("priority");
+                final JsonNode normalNode = rootNode.get(list).get("normal");
+                for (JsonNode priority : priorityNode) {
+                    todos.add(new ToDo(priority.get("title").asText(), priority.get("due").asText(), 1));
+                }
+                for (JsonNode normal : normalNode) {
+                    todos.add(new ToDo(normal.get("title").asText(), normal.get("due").asText(), 0));
+                }
+            }
+            catch (IOException event) {
+                event.printStackTrace();
+            }
+        }
+
+        return todos;
     }
 }

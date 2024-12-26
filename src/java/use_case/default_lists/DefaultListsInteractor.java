@@ -1,5 +1,7 @@
 package use_case.default_lists;
 
+import entity.ToDo;
+
 import java.util.ArrayList;
 
 public class DefaultListsInteractor implements DefaultListsInputBoundary {
@@ -19,5 +21,12 @@ public class DefaultListsInteractor implements DefaultListsInputBoundary {
         ArrayList<String> lists = defaultListsToDoDataAccessObjectInterface.getAllLists();
         DefaultListsOutputData defaultListsOutputData = new DefaultListsOutputData(lists);
         defaultListsPresenter.prepareSuccessView(defaultListsOutputData);
+    }
+
+    @Override
+    public void switchToTasksView(String list) {
+        ArrayList<ToDo> todos = defaultListsToDoDataAccessObjectInterface.getToDos(list);
+        defaultListsPresenter.switchToTasksView(todos, list);
+
     }
 }

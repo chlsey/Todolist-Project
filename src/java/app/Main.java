@@ -3,6 +3,7 @@ package app;
 import data_access.FileToDoDataAccessObject;
 import interface_adapter.DefaultListsViewModel;
 import interface_adapter.TasksState;
+import interface_adapter.TasksViewModel;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.create_list.CreateListController;
 import use_case.create_list.CreateListInteractor;
@@ -29,17 +30,18 @@ public class Main {
         final ViewManagerModel viewManagerModel = new ViewManagerModel();
         new ViewManager(views, cardLayout, viewManagerModel);
 
+        // viewmodels
         final DefaultListsViewModel defaultListsViewModel = new DefaultListsViewModel();
-        final TasksState tasksState = new TasksState();
+        final TasksViewModel tasksViewModel = new TasksViewModel();
 
         final FileToDoDataAccessObject fileToDoDataAccessObject = new FileToDoDataAccessObject("src/todos.json");
 
         // views
         final DefaultListsView defaultListsView = new DefaultListsView(defaultListsViewModel,
                 UseCaseFactory.createCreateListUseCase(viewManagerModel, defaultListsViewModel, fileToDoDataAccessObject),
-                UseCaseFactory.createDefaultListsUseCase(viewManagerModel, defaultListsViewModel, fileToDoDataAccessObject));
+                UseCaseFactory.createDefaultListsUseCase(viewManagerModel, defaultListsViewModel, fileToDoDataAccessObject, tasksViewModel));
 
-        final TasksView tasksView = new TasksView();
+        final TasksView tasksView = new TasksView(tasksViewModel);
 
         views.add(defaultListsView, defaultListsView.getViewName());
 
@@ -51,7 +53,7 @@ public class Main {
         viewManagerModel.firePropertyChanged();
 
         frame.pack();
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-
     }
 }

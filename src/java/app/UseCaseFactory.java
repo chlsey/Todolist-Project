@@ -1,6 +1,7 @@
 package app;
 
 import interface_adapter.DefaultListsViewModel;
+import interface_adapter.TasksViewModel;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.create_list.CreateListController;
 import interface_adapter.create_list.CreateListPresenter;
@@ -22,11 +23,11 @@ public final class UseCaseFactory {
     public static DefaultListsController createDefaultListsUseCase(
             ViewManagerModel viewManagerModel,
             DefaultListsViewModel defaultListsViewModel,
-            DefaultListsToDoDataAccessObjectInterface defaultListsToDoDataAccessObjectInterface) {
+            DefaultListsToDoDataAccessObjectInterface defaultListsToDoDataAccessObjectInterface, TasksViewModel tasksViewModel) {
 
         // Notice how we pass this method's parameters to the Presenter.
         final DefaultListsOutputBoundary defaultListsOutputBoundary = new DefaultListsPresenter(viewManagerModel,
-                defaultListsViewModel);
+                defaultListsViewModel, tasksViewModel);
         final DefaultListsInputBoundary defaultListsInputBoundary = new DefaultListsInteractor(
                 defaultListsToDoDataAccessObjectInterface, defaultListsOutputBoundary);
 

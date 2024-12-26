@@ -4,4 +4,6 @@ import use_case.create_list.CreateListInputData;
 
 public interface DefaultListsInputBoundary {
     void execute(DefaultListsInputData defaultListsInputData);
+
+    void switchToTasksView(String list);
 }
