@@ -8,7 +8,8 @@ import java.util.ArrayList;
 
 public class TasksState {
     private String title;
-    private ArrayList<ToDo> todos;
+    private ArrayList<ToDo> priority = new ArrayList<>();
+    private ArrayList<ToDo> normal = new ArrayList<>();
 
     public String getTitle() {
         return title;
@@ -19,23 +20,49 @@ public class TasksState {
     }
 
     public void setTasks(ArrayList<ToDo> todos) {
-        this.todos = todos;
+        priority.clear();
+        normal.clear();
+        for (ToDo todo : todos) {
+            if (todo.checkPriority()) {
+                priority.add(todo);
+            } else {
+                normal.add(todo);
+            }
+        }
     }
 
-    public ArrayList<ToDo> getTodos() {
-        return todos;
+    public ArrayList<ToDo> getPriorityTodos() {
+        return priority;
+    }
+
+    public ArrayList<ToDo> getNormalTodos() {
+        return normal;
     }
 
     public void addTask(ToDo toDo) {
         int i = 0;
         LocalDateTime date = toDo.getDue();
+        ArrayList<ToDo> todos = ((toDo.checkPriority()) ? priority : normal);
+        boolean added = false;
 
         for (ToDo task : todos) {
             if (date.isBefore(task.getDue())) {
-                todos.add(i, toDo);
+                if (toDo.checkPriority()) {
+                    priority.add(i, toDo);
+                } else {
+                    normal.add(i, toDo);
+                }
+                added = true;
                 break;
             }
             i += 1;
+        }
+        if (!added) {
+            if (toDo.checkPriority()) {
+                priority.add(i, toDo);
+            } else {
+                normal.add(i, toDo);
+            }
         }
     }
 

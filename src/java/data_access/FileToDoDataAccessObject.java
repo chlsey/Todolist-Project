@@ -149,13 +149,13 @@ public class FileToDoDataAccessObject implements CreateListToDoDataAccessInterfa
                 final JsonNode rootNode = objectMapper.readTree(jsonFile);
                 final JsonNode listNode = rootNode.get(title);
                 if (priority) {
-                    final ArrayNode priorityNode = (ArrayNode) listNode.get(title).get("priority");
+                    final ArrayNode priorityNode = (ArrayNode) listNode.get("priority");
                     ObjectNode newTask = objectMapper.createObjectNode();
                     newTask.put("desc", desc);
                     newTask.put("due", date);
                     priorityNode.add(newTask);
                 } else {
-                    final ArrayNode normalNode = (ArrayNode) listNode.get(title).get("normal");
+                    final ArrayNode normalNode = (ArrayNode) listNode.get("normal");
                     ObjectNode newTask = objectMapper.createObjectNode();
                     newTask.put("desc", desc);
                     newTask.put("due", date);

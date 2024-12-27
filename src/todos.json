@@ -7,49 +7,49 @@
     }, {
       "desc" : "read",
       "due" : "2024-12-24-15:00"
+    }, {
+      "desc" : "how aout now",
+      "due" : "2024-12-27-17:42"
     } ],
     "normal" : [ {
       "desc" : "sew",
       "due" : "2024-12-20-12:00"
+    }, {
+      "desc" : "clean room",
+      "due" : "2022-08-27-17:40"
+    }, {
+      "desc" : "test",
+      "due" : "2024-12-27-17:52"
+    }, {
+      "desc" : "why not",
+      "due" : "2024-12-27-17:52"
+    }, {
+      "desc" : "mop",
+      "due" : "2024-12-27-18:11"
+    }, {
+      "desc" : "facemask",
+      "due" : "2024-12-27-18:33"
     } ]
   },
   "daily" : {
     "title" : "daily",
-    "priority" : [ ],
-    "normal" : [ ]
+    "priority" : [ {
+      "desc" : "hi",
+      "due" : "2024-12-27-18:40"
+    } ],
+    "normal" : [ {
+      "desc" : "eat",
+      "due" : "2024-12-27-18:12"
+    }, {
+      "desc" : "wash face",
+      "due" : "2024-12-27-18:34"
+    }, {
+      "desc" : "ok",
+      "due" : "2024-12-27-18:40"
+    } ]
   },
   "meow" : {
     "title" : "meow",
-    "priority" : [ ],
-    "normal" : [ ]
-  },
-  "ok" : {
-    "title" : "ok",
-    "priority" : [ ],
-    "normal" : [ ]
-  },
-  "hehe" : {
-    "title" : "hehe",
-    "priority" : [ ],
-    "normal" : [ ]
-  },
-  "lol" : {
-    "title" : "lol",
-    "priority" : [ ],
-    "normal" : [ ]
-  },
-  "test" : {
-    "title" : "test",
-    "priority" : [ ],
-    "normal" : [ ]
-  },
-  "mom" : {
-    "title" : "mom",
-    "priority" : [ ],
-    "normal" : [ ]
-  },
-  "again!" : {
-    "title" : "again!",
     "priority" : [ ],
     "normal" : [ ]
   }
