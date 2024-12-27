@@ -17,6 +17,7 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class FileToDoDataAccessObject implements CreateListToDoDataAccessInterface, AddTaskToDoDataAccessInterface,
@@ -35,13 +36,13 @@ public class FileToDoDataAccessObject implements CreateListToDoDataAccessInterfa
                     JsonNode normals = jsonObject.get("normal");
                     JsonNode priorities = jsonObject.get("priority");
                     for (JsonNode priority : priorities) {
-                        String title = priority.get("title").asText();
+                        String title = priority.get("desc").asText();
                         String date = priority.get("due").asText();
                         ToDo todo = new ToDo(title, date, 1);
                         toDoList.addTask(todo);
                     }
                     for (JsonNode normal : normals) {
-                        String title = normal.get("title").asText();
+                        String title = normal.get("desc").asText();
                         String date = normal.get("due").asText();
                         ToDo todo = new ToDo(title, date, 0);
                         toDoList.addTask(todo);
@@ -53,10 +54,6 @@ public class FileToDoDataAccessObject implements CreateListToDoDataAccessInterfa
                 event.printStackTrace();
             }
         }
-    }
-
-    public void save(ToDo todo) {
-
     }
 
     public boolean containsList(String title) {
@@ -130,10 +127,10 @@ public class FileToDoDataAccessObject implements CreateListToDoDataAccessInterfa
                 final JsonNode priorityNode = rootNode.get(list).get("priority");
                 final JsonNode normalNode = rootNode.get(list).get("normal");
                 for (JsonNode priority : priorityNode) {
-                    todos.add(new ToDo(priority.get("title").asText(), priority.get("due").asText(), 1));
+                    todos.add(new ToDo(priority.get("desc").asText(), priority.get("due").asText(), 1));
                 }
                 for (JsonNode normal : normalNode) {
-                    todos.add(new ToDo(normal.get("title").asText(), normal.get("due").asText(), 0));
+                    todos.add(new ToDo(normal.get("desc").asText(), normal.get("due").asText(), 0));
                 }
             }
             catch (IOException event) {
@@ -142,5 +139,34 @@ public class FileToDoDataAccessObject implements CreateListToDoDataAccessInterfa
         }
 
         return todos;
+    }
+
+    @Override
+    public void addTask(String title, String desc, String date, Boolean priority) {
+        if (jsonFile.length() != 0) {
+            try {
+                final ObjectMapper objectMapper = new ObjectMapper();
+                final JsonNode rootNode = objectMapper.readTree(jsonFile);
+                final JsonNode listNode = rootNode.get(title);
+                if (priority) {
+                    final ArrayNode priorityNode = (ArrayNode) listNode.get(title).get("priority");
+                    ObjectNode newTask = objectMapper.createObjectNode();
+                    newTask.put("desc", desc);
+                    newTask.put("due", date);
+                    priorityNode.add(newTask);
+                } else {
+                    final ArrayNode normalNode = (ArrayNode) listNode.get(title).get("normal");
+                    ObjectNode newTask = objectMapper.createObjectNode();
+                    newTask.put("desc", desc);
+                    newTask.put("due", date);
+                    normalNode.add(newTask);
+                }
+
+                objectMapper.writerWithDefaultPrettyPrinter().writeValue(jsonFile, rootNode);
+            }
+            catch (IOException event) {
+                event.printStackTrace();
+            }
+        }
     }
 }

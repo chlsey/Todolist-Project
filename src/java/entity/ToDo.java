@@ -24,9 +24,12 @@ public class ToDo {
         return this.description;
     }
 
-    public Date getDue() throws ParseException {
-        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-        return sdf.parse(this.dueDate);
+    public LocalDateTime getDue() {
+        return LocalDateTime.of(Integer.parseInt(dueDate.substring(0,4)),
+                Integer.parseInt(dueDate.substring(5,7)),
+                Integer.parseInt(dueDate.substring(8,10)),
+                Integer.parseInt(dueDate.substring(11,13)),
+                Integer.parseInt(dueDate.substring(14,16)));
     }
 
     public boolean checkPriority() {

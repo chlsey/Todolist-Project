@@ -1,4 +1,7 @@
 package use_case.add_task;
 
-public class AddTaskInputBoundary {
+public interface AddTaskInputBoundary {
+    void execute(AddTaskInputData addTaskInputData);
+
+    void switchToListView();
 }

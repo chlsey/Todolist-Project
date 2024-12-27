@@ -18,7 +18,8 @@ public class Main {
     public static void main(String[] args) {
         final int width = 1024;
         final int height = 768;
-        // Create the main JFrame
+
+        // main frame
         final JFrame frame = new JFrame("ToDo List");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -41,12 +42,11 @@ public class Main {
                 UseCaseFactory.createCreateListUseCase(viewManagerModel, defaultListsViewModel, fileToDoDataAccessObject),
                 UseCaseFactory.createDefaultListsUseCase(viewManagerModel, defaultListsViewModel, fileToDoDataAccessObject, tasksViewModel));
 
-        final TasksView tasksView = new TasksView(tasksViewModel);
+        final TasksView tasksView = new TasksView(tasksViewModel, UseCaseFactory.createAddTaskUseCase(viewManagerModel, defaultListsViewModel, tasksViewModel, fileToDoDataAccessObject));
 
-        views.add(defaultListsView, defaultListsView.getViewName());
+        views.add(defaultListsView, defaultListsViewModel.getViewName());
 
-        views.add(tasksView, tasksView.getViewName());
-
+        views.add(tasksView, tasksViewModel.getViewName());
 
         // final steps
         viewManagerModel.setState(defaultListsView.getViewName());

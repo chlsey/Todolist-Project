@@ -1,4 +1,7 @@
 package use_case.add_task;
 
-public class AddTaskOutputBoundary {
+public interface AddTaskOutputBoundary {
+    void prepareSuccessView(AddTaskOutputData addTaskOutputData);
+
+    void switchToListView();
 }

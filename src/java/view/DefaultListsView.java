@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 public class DefaultListsView extends JPanel implements PropertyChangeListener {
-    private final String viewName = "default list";
+    private final String viewName = "lists view";
     private final DefaultListsViewModel defaultListsViewModel;
     private final CreateListController createListController;
     private final DefaultListsController defaultListsController;
@@ -162,7 +162,20 @@ public class DefaultListsView extends JPanel implements PropertyChangeListener {
             newBut.add(num);
             JButton listBut = new JButton(defaultListsState.getNewest());
             listBut.setFont(new Font(ARIAL, Font.PLAIN, SMALL));
+            listBut.addActionListener(
+                    event -> {
+                            this.defaultListsController.switchToTasksView(defaultListsState.getNewest());
+                    });
+
+            JButton delBut = new JButton("✖");
+            delBut.addActionListener(
+                    event -> {
+                        deleteList();
+                    }
+            );
+
             newBut.add(listBut);
+            newBut.add(delBut);
             buttons.add(newBut);
 
             this.revalidate();
